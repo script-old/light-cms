@@ -65,9 +65,14 @@ namespace :git do
     system("git add .")
   end
   
-  desc "fast finish"
-  task :fin => ["git:add" ,"git:commit", "git:push"] do
+  desc "fast stop"
+  task :fin => ["git:add" ,"git:commit"] do
     puts Time.now
+  end
+  
+  desc "stop & finish for session"
+  task :stop => ["git:fin", "git:push"] do
+  
   end
   
   
