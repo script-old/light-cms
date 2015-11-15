@@ -1,5 +1,6 @@
 # https://gist.github.com/kalmbach/4471560
 # Thank You - kalmbach
+task :default => "git:st"
 namespace :db do
   require "sequel"
   Sequel.extension :migration
@@ -37,7 +38,7 @@ namespace :db do
 end
 
 namespace :git do 
-  task :default => :st
+  
   desc "Print git status"
   task :st do
     system("git status")
@@ -51,6 +52,22 @@ namespace :git do
   desc "push to github"
   task :push do
     system("git push github master")
+  end
+  
+  desc "commit"
+  task :commit do
+    puts "Enter text"
+    system("git commit")
+  end
+  
+  desc "adding all files - e.g. git add ."
+  task :add do
+    system("git add .")
+  end
+  
+  desc "fast finish"
+  task :fin => ["git:add" ,"git:commit", "git:push"] do
+    puts Time.now
   end
   
   
