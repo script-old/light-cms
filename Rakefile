@@ -35,3 +35,23 @@ namespace :db do
     Rake::Task['db:version'].execute
   end    
 end
+
+namespace :git do 
+  task :default => :st
+  desc "Print git status"
+  task :st do
+    system("git status")
+  end
+  
+  desc "pull from github"
+  task :pull do
+    system("git pull github master")
+  end
+  
+  desc "push to github"
+  task :push do
+    system("git push github master")
+  end
+  
+  
+end
